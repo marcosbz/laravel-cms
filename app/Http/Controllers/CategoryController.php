@@ -15,6 +15,7 @@ class CategoryController extends Controller
     public function index()
     {
         //
+        return view('categories.index', ['categories' => Category::all()]);
     }
 
     /**
@@ -25,6 +26,7 @@ class CategoryController extends Controller
     public function create()
     {
         //
+        return view('categories.create');
     }
 
     /**
@@ -36,6 +38,17 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request, [
+          'name' => 'required|min:3|unique:categories'
+        ]);
+
+        Category::create([
+          'name' => $request->name
+        ]);
+
+        session()->flash('submit', 'Category successfully submitted');
+
+        return redirect(route('categories.index'));
     }
 
     /**
