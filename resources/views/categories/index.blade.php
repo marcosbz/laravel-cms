@@ -24,7 +24,10 @@
             @foreach ($categories->all() as $category)
               <tr>
                 <th scope="row">{{ $category->id }}</th>
-                <td>{{ $category->name }}</td>
+                <td>
+                  {{ $category->name }}
+                  <a class="btn btn-primary" href="{{ route('categories.edit', $category->id) }}">Edit</a>
+                </td>
               </tr>
             @endforeach
           </tbody>

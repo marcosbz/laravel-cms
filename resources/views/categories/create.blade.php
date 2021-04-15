@@ -6,7 +6,7 @@
     </x-slot>
     <a href="{{ route('categories.create') }}" class="btn btn-primary btn-lg mb-2">add Category</a>
     <div class="card">
-      <h5 class="card-header">add Category</h5>
+      <h5 class="card-header">{{ isset($category) ? "edit Category" : "add Category"}}</h5>
       <div class="card-body">
         @if ($errors->any())
           <div class="alert alert-danger" role="alert">
@@ -17,10 +17,13 @@
             </ul>
           </div>
         @endif
-        <form action="{{ route('categories.store') }}" class="row g-3" method="POST">
+        <form action="{{ isset($category) ? route('categories.update', $category->id) : route('categories.store') }}" class="row g-3" method="POST">
           @csrf
+          @if (isset($category))
+            @method("PUT")
+          @endif
           <label for="name" class="form-label">Name</label>
-          <input type="text" class="form-control-plaintext" name="name" id="name" placeholder="Enter new category name" value="">
+          <input type="text" class="form-control-plaintext" name="name" value="{{ isset($category) ? $category->name : '' }}" id="name" placeholder="Enter new category name">
           <button type="submit" class="btn btn-primary mb-3">Submit</button>
         </form>
       </div>
