@@ -4,7 +4,6 @@
             {{ __('New Category') }}
         </h2>
     </x-slot>
-    <a href="{{ route('categories.create') }}" class="btn btn-primary btn-lg mb-2">add Category</a>
     <div class="card">
       <h5 class="card-header">{{ isset($category) ? "edit Category" : "add Category"}}</h5>
       <div class="card-body">

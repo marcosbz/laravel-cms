@@ -3802,6 +3802,14 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js");
 
+handleDelete = function handleDelete(id) {
+  console.log(id);
+  var categoryDeleteModal = new bootstrap.Modal(document.getElementById('categoryDeleteModal'));
+  var categoryDeleteForm = document.getElementById('categoryDeleteForm');
+  categoryDeleteModal.show();
+  categoryDeleteForm.action = "/categories/" + id;
+};
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
